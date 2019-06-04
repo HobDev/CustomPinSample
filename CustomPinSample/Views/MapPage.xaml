@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:controls="clr-namespace:CustomMapRenderer.Controls"
+             x:Class="CustomPinSample.Views.MapPage">
+    
+   <!-- <controls:CustomMap x:Name="customMap"  ItemsSource="{Binding Data}"  MapType="Street"    >
+    
+            <controls:CustomMap.ItemTemplate>
+                <DataTemplate>
+    
+                    <controls:Custom.Pin Position="{Binding Position}"  Label="{Binding Label}" Address="{Binding Address}">
+                        
+                    </controls:CustomMap.Pin>
+                </DataTemplate>
+            </constrols:CustomMap.ItemTemplate>
+            
+            
+        </controls:CustomMap>-->
+</ContentPage>

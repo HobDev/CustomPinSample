@@ -325,3 +325,5 @@ ASALocalRun/
 .localhistory/CustomPinSample.Android/Resources/values/styles.xml
 CustomPinSample/Models/Constants.cs
 CustomPinSample.Android/Resources/values/secrets.xml
+/CustomizedMap/Platforms/Android/Resources/values/strings.xml
+/CustomizedMap/Models/Constants.cs

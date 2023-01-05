@@ -21,7 +21,7 @@ public class MapPage : ContentPage
                 IsTrafficEnabled = false,
                 IsZoomEnabled = true,
                 MapType = MapType.Street,
-                ItemsSource = viewModel.Data,
+                ItemsSource = viewModel.PinData,
                 ItemTemplate = new DataTemplate(() =>
                 {
                     Pin pin = new Pin();

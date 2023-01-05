@@ -77,7 +77,7 @@ namespace CustomPinSample.ViewModels
                     Data.Clear();
                     foreach (Place place in result)
                     {
-
+                        
                         Data.Add(new MapData()
                         {
                             Position = new Position(place.geometry.location.lat, place.geometry.location.lng),

@@ -5,6 +5,7 @@ using CustomizedMap.Models;
 using Microsoft.Maui.Maps;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Net;
 using System.Text.Json;
 using Location = Microsoft.Maui.Devices.Sensors.Location;
 
@@ -74,12 +75,11 @@ namespace CustomizedMap.ViewModels
                             Data.Clear();
                             foreach (Result result in results)
                             {
-                                Data.Add(new MapData
-                                {
-                                    Location = result.Geometry.Location,
-                                    Label = result.Name,
-                                    Address = result.Vicinity,
-                                });
+                                MapData mapData= new MapData();
+                                mapData.PinLocation = new Microsoft.Maui.Devices.Sensors.Location(result.Geometry.Location.Lat, result.Geometry.Location.Lng);
+                                mapData.Label = result.Name;
+                                mapData.Address = result.Vicinity;
+                                Data.Add(mapData);
                             }
                         }
                     }

@@ -1,3 +1,4 @@
+using CustomizedMap.Models;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using Map = Microsoft.Maui.Controls.Maps.Map;
@@ -9,30 +10,40 @@ public class MapPage : ContentPage
 	MapViewModel viewModel;
 	public MapPage(MapViewModel viewModel)
 	{
+		try
+		{
+            this.viewModel = viewModel;
 
-		this.viewModel = viewModel;
+            map = new Map()
+            {
 
-		map = new Map()
+                IsShowingUser = true,
+                IsTrafficEnabled = false,
+                IsZoomEnabled = true,
+                MapType = MapType.Street,
+                ItemsSource = viewModel.Data,
+                ItemTemplate = new DataTemplate(() =>
+                {
+                    Pin pin = new Pin();
+                    pin.Bind(Pin.AddressProperty, nameof(MapData.Address));
+                    pin.Bind(Pin.LabelProperty, nameof(MapData.Label));
+                    pin.Bind(Pin.LocationProperty,nameof(MapData.PinLocation));
+                    pin.Type = PinType.Place;
+                    return pin;
+                })
+            };
+
+            Content = map;
+            InitializeMap();
+
+            BindingContext = viewModel;
+        }
+		catch (Exception ex)
 		{
 
-			IsShowingUser = true,
-			IsTrafficEnabled = false,
-			IsZoomEnabled = true,
-			MapType = MapType.Street,
-			ItemTemplate = new DataTemplate(()=>
-			{
-				Pin pin = new Pin();
-				pin.Bind(Pin.AddressProperty, "Address");
-				pin.Bind(Pin.LabelProperty, "Label");
-				pin.Bind(Pin.LocationProperty,"Location");
-				return pin;
-			})
-        };
-
-		Content = map;
-	   InitializeMap();
-
-		BindingContext= viewModel;
+			
+		}
+		
 	}
 
 	async void InitializeMap()

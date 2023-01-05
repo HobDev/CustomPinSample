@@ -1,11 +1,11 @@
-﻿
+﻿//using Location = Microsoft.Maui.Devices.Sensors.Location;
 
 namespace CustomizedMap.Models
 {
     public class MapData
     {
 
-        public Location Location { get; set; }  
+        public Microsoft.Maui.Devices.Sensors.Location PinLocation { get; set; }  
 
         public string Label { get; set; }   
 

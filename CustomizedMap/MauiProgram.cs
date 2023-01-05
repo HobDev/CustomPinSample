@@ -1,6 +1,6 @@
-﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Markup;
-using Microsoft.Extensions.Logging;
+﻿
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 
 namespace CustomizedMap
 {
@@ -19,6 +19,10 @@ namespace CustomizedMap
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<MapPage>();
+            builder.Services.AddSingleton<MapViewModel>();
+           
 
 #if DEBUG
 		builder.Logging.AddDebug();

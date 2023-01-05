@@ -4,7 +4,7 @@ namespace CustomizedMap.Views;
 
 public class MapPage : ContentPage
 {
-	public MapPage()
+	public MapPage(MapViewModel viewModel)
 	{
 		Content = new Map
 		{
@@ -12,5 +12,7 @@ public class MapPage : ContentPage
             IsShowingUser = true,
             MapType = MapType.Street,
         };
+
+		BindingContext= viewModel;
 	}
 }

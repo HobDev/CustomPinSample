@@ -17,7 +17,7 @@ namespace CustomizedMap.ViewModels
         ObservableCollection<MapData> pinData;
 
         [ObservableProperty]
-        readonly string searchType=string.Empty;
+       string searchType=string.Empty;
 
         [ObservableProperty]
         Microsoft.Maui.Devices.Sensors.Location currentMapLocation;

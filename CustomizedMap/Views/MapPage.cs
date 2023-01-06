@@ -1,3 +1,4 @@
+using CustomizedMap.CustomControl;
 using CustomizedMap.Models;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
@@ -24,11 +25,13 @@ public class MapPage : ContentPage
                 ItemsSource = viewModel.PinData,
                 ItemTemplate = new DataTemplate(() =>
                 {
-                    Pin pin = new Pin();
+                    CustomPin pin = new CustomPin();
                     pin.Bind(Pin.AddressProperty, nameof(MapData.Address));
                     pin.Bind(Pin.LabelProperty, nameof(MapData.Label));
                     pin.Bind(Pin.LocationProperty,nameof(MapData.PinLocation));
                     pin.Type = PinType.Place;
+                    pin.ImageSource =ImageSource.FromResource("CustomizedMap.Resources.icon.jpeg");
+                    pin.Map = map;
                     return pin;
                 })
             };

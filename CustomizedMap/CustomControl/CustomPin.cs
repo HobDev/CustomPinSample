@@ -20,24 +20,34 @@ namespace CustomizedMap.CustomControl
 
         static async void OnImageSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var control = (CustomPin)bindable;
-            if(control.Handler?.PlatformView is null)
+            try
             {
-                // Workaround for when this executes the Handler and PlatformView is null
-                control.HandlerChanged += OnHandlerChanged;
-                return;
-            }
+                var control = (CustomPin)bindable;
+                if (control.Handler?.PlatformView is null)
+                {
+                    // Workaround for when this executes the Handler and PlatformView is null
+                    control.HandlerChanged += OnHandlerChanged;
+                    return;
+                }
 
 #if IOS || MACCATALYST
             await control.AddAnnotation();
 #else
-            await Task.CompletedTask;
+                await Task.CompletedTask;
 #endif
-            void OnHandlerChanged(object? s, EventArgs e)
-            {
-                OnImageSourceChanged(control, oldValue, newValue);
-                control.HandlerChanged -= OnHandlerChanged;
+                void OnHandlerChanged(object? s, EventArgs e)
+                {
+                    OnImageSourceChanged(control, oldValue, newValue);
+                    control.HandlerChanged -= OnHandlerChanged;
+                }
+          
             }
+            catch (Exception ex)
+            {
+
+                await Shell.Current.DisplayAlert("Error", ex.Message,"OK");
+            }
+           
         }
     }
 }

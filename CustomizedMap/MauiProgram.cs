@@ -1,4 +1,5 @@
 ﻿
+using CustomizedMap.Platforms.Android;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 
@@ -27,6 +28,14 @@ namespace CustomizedMap
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+            builder.ConfigureMauiHandlers(handlers =>
+            {
+#if ANDROID
+                handlers.AddHandler<Microsoft.Maui.Controls.Maps.Map, CustomMapHandler>();
+#endif
+            });
+
+
 
             return builder.Build();
         }

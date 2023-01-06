@@ -34,7 +34,7 @@ namespace CustomizedMap.ViewModels
             try
             {
                 GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium);
-              Microsoft.Maui.Devices.Sensors.Location currentMapLocation = await Geolocation.GetLocationAsync(request);
+              currentMapLocation = await Geolocation.GetLocationAsync(request);
                 // MapSpan mapSpan = new MapSpan(currentMapLocation, 0.01, 0.01);
                 mapSpan = MapSpan.FromCenterAndRadius(currentMapLocation, Distance.FromKilometers(0.444));
                

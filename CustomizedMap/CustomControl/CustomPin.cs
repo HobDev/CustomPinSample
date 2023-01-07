@@ -2,6 +2,8 @@
 
 using Microsoft.Maui.Controls.Maps;
 
+
+
 namespace CustomizedMap.CustomControl
 {
    public class CustomPin: Pin
@@ -30,8 +32,8 @@ namespace CustomizedMap.CustomControl
                     return;
                 }
 
-#if IOS || MACCATALYST
-            await control.AddAnnotation();
+#if IOS
+                await control.AddAnnotation();
 #else
                 await Task.CompletedTask;
 #endif

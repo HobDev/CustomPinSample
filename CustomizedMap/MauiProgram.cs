@@ -1,5 +1,7 @@
 ﻿
+#if ANDROID
 using CustomizedMap.Platforms.Android;
+#endif
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 

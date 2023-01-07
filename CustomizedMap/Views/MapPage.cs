@@ -1,7 +1,9 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using CustomizedMap.CustomControl;
 using CustomizedMap.Models;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using System.Collections.ObjectModel;
 using Map = Microsoft.Maui.Controls.Maps.Map;
 namespace CustomizedMap.Views;
 
@@ -9,15 +11,14 @@ public class MapPage : ContentPage
 {
 	Map map;
 	MapViewModel viewModel;
-	public MapPage(MapViewModel viewModel)
+
+    public MapPage(MapViewModel viewModel)
 	{
 		try
 		{
             this.viewModel = viewModel;
-
-            map = new Map()
+            map = new Map
             {
-
                 IsShowingUser = true,
                 IsTrafficEnabled = false,
                 IsZoomEnabled = true,
@@ -26,17 +27,23 @@ public class MapPage : ContentPage
                 ItemTemplate = new DataTemplate(() =>
                 {
                     CustomPin pin = new CustomPin();
-                    pin.Bind(Pin.AddressProperty, nameof(MapData.Address));
-                    pin.Bind(Pin.LabelProperty, nameof(MapData.Label));
-                    pin.Bind(Pin.LocationProperty,nameof(MapData.PinLocation));
+                    pin.Bind(CustomPin.AddressProperty, nameof(MapData.Address));
+                    pin.Bind(CustomPin.LabelProperty, nameof(MapData.Label));
+                    pin.Bind(CustomPin.LocationProperty, nameof(MapData.PinLocation));
                     pin.Type = PinType.Place;
-                    pin.ImageSource =ImageSource.FromResource("CustomizedMap.Resources.icon.jpeg");
-                    pin.Map = map;
+                    pin.Bind(CustomPin.ImageSourceProperty, nameof(MapData.PinImage));
                     return pin;
+
                 })
             };
 
-            Content = map;
+            Content = new Grid
+            {
+                Children =
+                {
+                    map,
+                }
+            };
             InitializeMap();
 
             BindingContext = viewModel;
@@ -54,9 +61,12 @@ public class MapPage : ContentPage
 		try
 		{
             MapSpan mapSpan = await viewModel.GetLocation();
+
             map.MoveToRegion(mapSpan);
 
             await viewModel.GetPins();
+           
+         
         }
 		catch (Exception ex)
 		{

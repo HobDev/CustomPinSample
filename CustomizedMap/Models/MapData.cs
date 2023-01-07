@@ -10,5 +10,7 @@ namespace CustomizedMap.Models
         public string Label { get; set; }   
 
         public string Address { get; set; } 
+
+        public ImageSource PinImage { get; set; }    
     }
 }

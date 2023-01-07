@@ -50,17 +50,20 @@
 
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\icon.jpeg" />
+	  <MauiImage Remove="Resources\Images\outline_cabin_black_18.png" />
 	  <MauiImage Remove="Resources\Images\outline_place_black_18.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\values\strings.xml" />
 	  <None Remove="Resources\Images\icon.jpeg" />
+	  <None Remove="Resources\Images\outline_cabin_black_18.png" />
 	  <None Remove="Resources\Images\outline_place_black_18.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\icon.jpeg" />
+	  <EmbeddedResource Include="Resources\Images\outline_cabin_black_18.png" />
 	  <EmbeddedResource Include="Resources\Images\outline_place_black_18.png" />
 	</ItemGroup>
 
@@ -70,11 +73,6 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Platforms\Android\Handlers\" />
-	  <Folder Include="Platforms\iOS\Handlers\" />
 	</ItemGroup>
 
 </Project>

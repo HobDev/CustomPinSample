@@ -24,26 +24,25 @@ public class MapPage : ContentPage
                 IsZoomEnabled = true,
                 MapType = MapType.Street,
                 ItemsSource = viewModel.PinData,
-                ItemTemplate = new DataTemplate(() =>
-                {
-                    CustomPin pin = new CustomPin();
-                    pin.Bind(CustomPin.AddressProperty, nameof(MapData.Address));
-                    pin.Bind(CustomPin.LabelProperty, nameof(MapData.Label));
-                    pin.Bind(CustomPin.LocationProperty, nameof(MapData.PinLocation));
-                    pin.Type = PinType.Place;
-                    pin.Bind(CustomPin.ImageSourceProperty, nameof(MapData.PinImage));
-                    return pin;
-
-                })
+               
             };
 
-            Content = new Grid
+           DataTemplate ItemTemplate = new DataTemplate(() =>
             {
-                Children =
-                {
-                    map,
-                }
-            };
+                CustomPin pin = new CustomPin();
+                pin.Bind(CustomPin.AddressProperty, nameof(MapData.Address));
+                pin.Bind(CustomPin.LabelProperty, nameof(MapData.Label));
+                pin.Bind(CustomPin.LocationProperty, nameof(MapData.PinLocation));
+                pin.Type = PinType.Place;
+                pin.Bind(CustomPin.ImageSourceProperty, nameof(MapData.PinImage));
+                pin.Map =map;
+                return pin;
+
+            });
+
+            map.ItemTemplate= ItemTemplate;
+
+            Content = map;
             InitializeMap();
 
             BindingContext = viewModel;

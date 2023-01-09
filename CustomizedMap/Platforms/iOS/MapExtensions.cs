@@ -1,7 +1,9 @@
 ﻿
 
-using CustomizedMap.CustomControl;
+using System;
+using CoreLocation;
 using MapKit;
+using CustomizedMap.CustomControl;
 using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Maps.Platform;

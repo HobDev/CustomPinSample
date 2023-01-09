@@ -2,7 +2,9 @@
 
 using Microsoft.Maui.Controls.Maps;
 
-
+#if IOS
+using CustomizedMap.Platforms.iOS;
+#endif
 
 namespace CustomizedMap.CustomControl
 {

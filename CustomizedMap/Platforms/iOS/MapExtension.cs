@@ -12,7 +12,6 @@ namespace CustomizedMap.Platforms.iOS
     public static partial class MapExtension
     {
         private static UIView? lastTouchedView;
-
         public static async Task AddAnnotation(this CustomPin pin)
         {
             var imageSourceHandler = new ImageLoaderSourceHandler();

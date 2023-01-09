@@ -6,7 +6,7 @@ using UIKit;
 
 namespace CustomizedMap.Platforms.iOS
 {
-    public class CustomAnnotation: MKPointAnnotation
+    public class CustomAnnotation:MKPointAnnotation
     {
         public Guid Identifier { get; set; }    
 

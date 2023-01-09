@@ -75,7 +75,7 @@ namespace CustomizedMap.ViewModels
                                 mapData.PinLocation = new Microsoft.Maui.Devices.Sensors.Location(result.Geometry.Location.Lat, result.Geometry.Location.Lng);
                                 mapData.Label = result.Name;
                                 mapData.Address = result.Vicinity;
-                                mapData.PinImage = ImageSource.FromResource("CustomizedMap.Resources.Images.icon.jpeg");
+                                mapData.PinImage = ImageSource.FromResource("CustomizedMap.Resources.Images.outline_cabin_black_20.png");
                                 PinData.Add(mapData);
                             }
                         }

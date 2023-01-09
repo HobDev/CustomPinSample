@@ -49,22 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\icon.jpeg" />
-	  <MauiImage Remove="Resources\Images\outline_cabin_black_18.png" />
-	  <MauiImage Remove="Resources\Images\outline_place_black_18.png" />
+	  <MauiImage Remove="Resources\Images\outline_cabin_black_20.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\values\strings.xml" />
-	  <None Remove="Resources\Images\icon.jpeg" />
-	  <None Remove="Resources\Images\outline_cabin_black_18.png" />
-	  <None Remove="Resources\Images\outline_place_black_18.png" />
+	  <None Remove="Resources\Images\outline_cabin_black_20.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\icon.jpeg" />
-	  <EmbeddedResource Include="Resources\Images\outline_cabin_black_18.png" />
-	  <EmbeddedResource Include="Resources\Images\outline_place_black_18.png" />
+	  <EmbeddedResource Include="Resources\Images\outline_cabin_black_20.png" />
 	</ItemGroup>
 
 	<ItemGroup>

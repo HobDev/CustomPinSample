@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics;
 using CustomizedMap.CustomControl;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Maps;
@@ -94,10 +95,13 @@ namespace CustomizedMap.Platforms.Android
                         if (pin is CustomPin cp)
                         {
                             var imageSourceHandler = new ImageLoaderSourceHandler();
-                            var bitmap = await imageSourceHandler.LoadImageAsync(cp.ImageSource, Application.Context);
-                            markerOption?.SetIcon(bitmap is null
-                                ? BitmapDescriptorFactory.DefaultMarker()
-                                : BitmapDescriptorFactory.FromBitmap(bitmap));
+                            using (Bitmap bitmap = await imageSourceHandler.LoadImageAsync(cp.ImageSource, Application.Context))
+                            {
+                                markerOption?.SetIcon(bitmap is null
+                                    ? BitmapDescriptorFactory.DefaultMarker()
+                                    : BitmapDescriptorFactory.FromBitmap(bitmap));
+                            }
+                                
                         }
 
                         var marker = Map.AddMarker(markerOption);
@@ -106,7 +110,7 @@ namespace CustomizedMap.Platforms.Android
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex)            
             {
 
                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");

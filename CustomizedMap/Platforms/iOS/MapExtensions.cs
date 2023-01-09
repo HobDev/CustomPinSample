@@ -9,7 +9,7 @@ using UIKit;
 
 namespace CustomizedMap.Platforms.iOS
 {
-    public static partial class MapExtension
+    public static partial class MapExtensions
     {
         private static UIView? lastTouchedView;
         public static async Task AddAnnotation(this CustomPin pin)

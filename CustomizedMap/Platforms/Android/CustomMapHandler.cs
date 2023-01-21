@@ -10,6 +10,8 @@ using Microsoft.Maui.Maps.Handlers;
 using Microsoft.Maui.Platform;
 using Application = Android.App.Application;
 using IMap = Microsoft.Maui.Maps.IMap;
+using Android.Graphics.Drawables;
+using Microsoft.Maui.Controls.Maps;
 
 namespace CustomizedMap.Platforms.Android
 {
@@ -34,7 +36,7 @@ namespace CustomizedMap.Platforms.Android
 
         public List<Marker>? Markers { get; private set; }
 
-        protected override async void ConnectHandler(MapView platformView)
+        protected override void ConnectHandler(MapView platformView)
         {
             try
             {
@@ -45,12 +47,12 @@ namespace CustomizedMap.Platforms.Android
             catch (Exception ex)
             {
 
-                await Shell.Current.DisplayAlert("Error", ex.Message,"OK");
+                Shell.Current.DisplayAlert("Error", ex.Message,"OK");
             }
             
         }
 
-        private static new async void MapPins(IMapHandler handler, IMap map)
+        private static new void MapPins(IMapHandler handler, IMap map)
         {
             try
             {
@@ -65,18 +67,18 @@ namespace CustomizedMap.Platforms.Android
 
                         mapHandler.Markers = null;
                     }
-                    await mapHandler.AddPins(map.Pins);
+                    mapHandler.AddPins(map.Pins);
                 }
             }
             catch (Exception ex)
             {
 
-                await Shell.Current.DisplayAlert("Error", ex.Message,"OK");
+                Shell.Current.DisplayAlert("Error", ex.Message,"OK");
             }
           
         }
 
-        private async Task AddPins(IEnumerable<IMapPin> mapPins)
+        private void AddPins(IEnumerable<IMapPin> mapPins)
         {
             try
             {
@@ -94,28 +96,35 @@ namespace CustomizedMap.Platforms.Android
                         var markerOption = mapPinHandler.PlatformView;
                         if (pin is CustomPin cp)
                         {
-                            var imageSourceHandler = new ImageLoaderSourceHandler();
-                            using (Bitmap bitmap = await imageSourceHandler.LoadImageAsync(cp.ImageSource, Application.Context))
+                            cp.ImageSource.LoadImage(MauiContext, result =>
                             {
-                                markerOption?.SetIcon(bitmap is null
-                                    ? BitmapDescriptorFactory.DefaultMarker()
-                                    : BitmapDescriptorFactory.FromBitmap(bitmap));
-                            }
-                                
+                                if(result?.Value is BitmapDrawable bitMapDrawable)
+                                {
+                                    markerOption.SetIcon(BitmapDescriptorFactory.FromBitmap(bitMapDrawable.Bitmap));
+                                }
+                                AddMarker(Map, pin, Markers, markerOption);
+                            });
                         }
 
-                        var marker = Map.AddMarker(markerOption);
-                        pin.MarkerId = marker.Id;
-                        Markers.Add(marker);
+                        else
+                        {
+                            AddMarker(Map, pin, Markers, markerOption);
+                        }
                     }
                 }
             }
             catch (Exception ex)            
             {
 
-               await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
-           
+               Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }          
+        }
+
+        private static void AddMarker(GoogleMap map, IMapPin pin, List<Marker> markers, MarkerOptions markerOption)
+        {
+            var marker = map.AddMarker(markerOption);
+            pin.MarkerId = marker.Id;
+            markers.Add(marker);
         }
     }
 }

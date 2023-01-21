@@ -18,4 +18,6 @@ public static class Constants
     }
 ```
 
-Add strings.xml and Constants.cs to .gitignore as the Google places api key is a secret and should not to pushed to the remote repo.
+Add strings.xml and Constants.cs to .gitignore as the Google places api key is a secret and should not to pushed to the remote repo.<br />
+
+Replace CustomPin with Pin in MapPage to get default platform pins on the map. 
